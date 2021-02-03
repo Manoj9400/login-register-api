@@ -1,24 +1,40 @@
 var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
 
-const Schema = mongoose.Schema;
-
-let user = new Schema({
-    username:{
-        type: String,
-        required: true 
-    },
-    email:{
-        type: String,
-        required: true,
-        index:{
-             unique: true
-        },
-        //match:/^[a-zA-Z0-9!@#$%^&*]{6,16}$/
-    },
-    password:{
-        type: String,
-        required: true
-    }
+var user = new Schema({
+            name:{
+                type:String,
+                required:true
+            },
+            email:{
+                 type:String,
+                 unique: true,
+                 required:true
+            },
+            password:{
+                type:String,
+                required:true  
+            },
+            role:{
+                type:String,
+                required:true  
+            },
+            status: {
+                type: String,
+                default: 'active'
+            },
+            isDeleted: {
+                type: Boolean,
+                default: false
+              }, 
+            created_at:{
+                type:Date,
+                default:Date.now
+            },
+            updated_at:{
+                type:Date,
+                default:Date.now
+            },
 });
 
-module.exports = mongoose.model("user", user)
+module.exports = mongoose.model("user", user);
